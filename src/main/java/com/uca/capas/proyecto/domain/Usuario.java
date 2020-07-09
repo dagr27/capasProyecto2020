@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -20,7 +23,7 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="c_usuario")
-	private Integer idUsuario;
+	private Integer c_usuario;
 	
 	@Column(name="nombre")
 	@NotEmpty(message="No puede estar vacio")
@@ -34,13 +37,15 @@ public class Usuario {
 	
 	@Column(name="f_nacimiento")
 	@DateTimeFormat(pattern="dd/MM/yyyy")
-	private Date fNacimiento;
+	private Date f_nacimiento;
 	
-	@Column(name="c_departamento")
-	private Integer idDepartamento;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="c_departamento")
+	private Departamento c_departamento;
 	
-	@Column(name="c_municipio")
-	private Integer idMunicipio;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="c_municipio")
+	private Municipio c_municipio;
 	
 	@Column(name="direccion")
 	@NotEmpty(message="No puede estar vacio")
@@ -65,12 +70,12 @@ public class Usuario {
 	
 	public Usuario() {}
 
-	public Integer getIdUsuario() {
-		return idUsuario;
+	public Integer getC_usuario() {
+		return c_usuario;
 	}
 
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setC_usuario(Integer c_usuario) {
+		this.c_usuario = c_usuario;
 	}
 
 	public String getNombre() {
@@ -89,28 +94,28 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	public Date getfNacimiento() {
-		return fNacimiento;
+	public Date getF_nacimiento() {
+		return f_nacimiento;
 	}
 
-	public void setfNacimiento(Date fNacimiento) {
-		this.fNacimiento = fNacimiento;
+	public void setF_nacimiento(Date f_nacimiento) {
+		this.f_nacimiento = f_nacimiento;
 	}
 
-	public Integer getIdDepartamento() {
-		return idDepartamento;
+	public Departamento getC_departamento() {
+		return c_departamento;
 	}
 
-	public void setIdDepartamento(Integer idDepartamento) {
-		this.idDepartamento = idDepartamento;
+	public void setC_departamento(Departamento c_departamento) {
+		this.c_departamento = c_departamento;
 	}
 
-	public Integer getIdMunicipio() {
-		return idMunicipio;
+	public Municipio getC_municipio() {
+		return c_municipio;
 	}
 
-	public void setIdMunicipio(Integer idMunicipio) {
-		this.idMunicipio = idMunicipio;
+	public void setC_municipio(Municipio c_municipio) {
+		this.c_municipio = c_municipio;
 	}
 
 	public String getDireccion() {
@@ -152,6 +157,8 @@ public class Usuario {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	
 	
 	
 }
