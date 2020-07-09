@@ -24,7 +24,7 @@ public class JpaConfiguration {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
 		em.setPersistenceUnitName("capas");
-		em.setPackagesToScan("com.uca.capas.domain");
+		em.setPackagesToScan("com.uca.capas.proyecto.domain");
 		
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);
@@ -36,9 +36,9 @@ public class JpaConfiguration {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl("jdbc:postgresql://127.0.0.1:5432/ESTUDIANTE");
+		dataSource.setUrl("jdbc:postgresql://127.0.0.1:5432/PROYECTO");
 		dataSource.setUsername("postgres");
-		dataSource.setPassword("12345");
+		dataSource.setPassword("root");
 		return dataSource;
 	}
 	

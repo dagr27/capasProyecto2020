@@ -21,12 +21,20 @@ public class MainController {
 		return mav;
 	}
 	
+	@RequestMapping("admin/materias")
+	public ModelAndView materiasScreen() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/materias");
+		return mav;
+	}
+	
 	@RequestMapping("colab/home")
 	public ModelAndView colabHome() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("colaborator/home.html");
 		return mav;
 	}
+	
 
 
 }
