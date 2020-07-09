@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">School Team</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="home.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="materias.html">Materias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="school.html">Centros Escolares</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="users.html">Usuarios</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center d-flex flex-column justify-content-center align-items-center">
+                <h1 class="mt-5">Usuarios</h1>
+                <form class="w-50" action="" id="registro">
+                    <div class="w-100 mb-1 d-flex">
+                        <input type="text" class="w-50 form-control" placeholder="Nombre">
+                        <input type="text" class="w-50 form-control" placeholder="Apellido">
+                    </div>
+                    <input type="text" class="form-control mb-1" placeholder="Usuario">
+                    <input type="password" class="form-control mb-1" placeholder="Contraseña">
+                    <input type="date" class="form-control mb-1" placeholder="Fecha de Nacimiento">
+                    <div class="w-100 mb-1 d-flex">
+                        <select name="" id="" class="w-50 form-control">
+                            <option value="">Departamento</option>
+                        </select>
+                        <select name="" id="" class="w-50 form-control">
+                            <option value="">Municipio</option>
+                        </select>
+                    </div>
+                    <input type="text" class="form-control mb-1" placeholder="Direccion">
+                    <input type="submit" class="form-control btn btn-success mb-3" value="Agregar" name="send" id="send">
+                </form>
+                <input type="submit" value="Mostrar/Actualizar Usuarios" class="form-control btn btn-dark w-50 mb-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Acciones</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Municipio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="">Editar</a></td>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.slim.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
