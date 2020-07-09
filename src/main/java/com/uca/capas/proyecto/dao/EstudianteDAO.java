@@ -1,5 +1,13 @@
 package com.uca.capas.proyecto.dao;
 
-public interface EstudianteDAO {
+import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
+import com.uca.capas.proyecto.domain.Estudiante;
+
+public interface EstudianteDAO {
+	public List<Estudiante> findAll() throws DataAccessException;
+	
+	public void save(Estudiante estudiante) throws DataAccessException;
 }
