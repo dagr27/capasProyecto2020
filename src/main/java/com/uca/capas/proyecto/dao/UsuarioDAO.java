@@ -1,5 +1,5 @@
 package com.uca.capas.proyecto.dao;
 
-public interface ColaboradorDAO {
+public interface UsuarioDAO {
 
 }
