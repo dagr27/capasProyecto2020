@@ -27,6 +27,12 @@ public class MainController {
 		mav.setViewName("admin/materias");
 		return mav;
 	}
+	@RequestMapping("admin/escuelas")
+	public ModelAndView escuelasScreen() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/school");
+		return mav;
+	}
 	
 	@RequestMapping("colab/home")
 	public ModelAndView colabHome() {
