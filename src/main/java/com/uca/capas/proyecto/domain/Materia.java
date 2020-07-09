@@ -16,43 +16,45 @@ public class Materia {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="c_materia")
-	private Integer idMateria;
+	private Integer c_materia;
 	
 	@Column(name="nombre")
 	@NotEmpty(message="No puede estar vacio")
 	@Size(max=30, message="No debe de tener mas de 50 caracteres")
-	private String nombreMateria;
+	private String nombre;
 	
 	@Column(name="descripcion")
 	@NotEmpty(message="No puede estar vacio")
 	@Size(max=30, message="No debe de tener mas de 50 caracteres")
-	private String descMateria;
+	private String descripcion;
 	
 	public Materia() {}
 
-	public Integer getIdMateria() {
-		return idMateria;
+	public Integer getC_materia() {
+		return c_materia;
 	}
 
-	public void setIdMateria(Integer idMateria) {
-		this.idMateria = idMateria;
+	public void setC_materia(Integer c_materia) {
+		this.c_materia = c_materia;
 	}
 
-	public String getNombreMateria() {
-		return nombreMateria;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setNombreMateria(String nombreMateria) {
-		this.nombreMateria = nombreMateria;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getDescMateria() {
-		return descMateria;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setDescMateria(String descMateria) {
-		this.descMateria = descMateria;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
+
+	
 
 	
 }

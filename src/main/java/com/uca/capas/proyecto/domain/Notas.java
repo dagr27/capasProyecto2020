@@ -2,9 +2,12 @@ package com.uca.capas.proyecto.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,13 +17,15 @@ public class Notas {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="c_materia_estudiante")
-	private Integer idNotas;
+	private Integer c_materia_estudiante;
 	
-	@Column(name="c_materia")
-	private Integer idMateria;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="c_materia")
+	private Materia c_materia;
 	
-	@Column(name="c_estudiante")
-	private Integer idEstudiante;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="c_estudiante")
+	private Estudiante c_estudiante;
 	
 	@Column(name="nota")
 	private Integer nota;
@@ -33,28 +38,28 @@ public class Notas {
 	
 	public Notas() {}
 
-	public Integer getIdNotas() {
-		return idNotas;
+	public Integer getC_materia_estudiante() {
+		return c_materia_estudiante;
 	}
 
-	public void setIdNotas(Integer idNotas) {
-		this.idNotas = idNotas;
+	public void setC_materia_estudiante(Integer c_materia_estudiante) {
+		this.c_materia_estudiante = c_materia_estudiante;
 	}
 
-	public Integer getIdMateria() {
-		return idMateria;
+	public Materia getC_materia() {
+		return c_materia;
 	}
 
-	public void setIdMateria(Integer idMateria) {
-		this.idMateria = idMateria;
+	public void setC_materia(Materia c_materia) {
+		this.c_materia = c_materia;
 	}
 
-	public Integer getIdEstudiante() {
-		return idEstudiante;
+	public Estudiante getC_estudiante() {
+		return c_estudiante;
 	}
 
-	public void setIdEstudiante(Integer idEstudiante) {
-		this.idEstudiante = idEstudiante;
+	public void setC_estudiante(Estudiante c_estudiante) {
+		this.c_estudiante = c_estudiante;
 	}
 
 	public Integer getNota() {
@@ -80,6 +85,8 @@ public class Notas {
 	public void setCiclo(Integer ciclo) {
 		this.ciclo = ciclo;
 	}
+
+	
 	
 	
 
