@@ -2,6 +2,8 @@ package com.uca.capas.proyecto.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ public class NotasServiceImpl implements NotasService {
 	}
 
 	@Override
+	@Transactional
 	public void save(Notas nota) throws DataAccessException {
 		notasDao.save(nota);
 		
