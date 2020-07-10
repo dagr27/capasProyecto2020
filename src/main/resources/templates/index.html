@@ -42,7 +42,7 @@
           <input type="password" class="form-control mb-1" th:field="*{password}" placeholder="Contraseña">
           <input type="date" class="form-control mb-1" th:field="*{f_nacimiento}" placeholder="Fecha de Nacimiento">
           <div class="w-100 mb-1 d-flex">          
-            <select class="w-50 form-control" th:field="*{c_departamento.id}">
+            <select class="w-50 form-control" th:field="*{c_departamento.c_departamento}">
             	<option value="">Departamento
                 <option 
                 	th:each="depa : ${departamentos}" 
