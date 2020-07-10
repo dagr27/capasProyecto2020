@@ -15,10 +15,29 @@ public class Departamento {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="c_departamento")
-	private Integer id;
+	private Integer c_departamento;
 	
 	@Column(name="departamento")
 	@NotEmpty(message="No puede estar vacio")
 	@Size(max=30, message="No debe de tener mas de 50 caracteres")
 	private String departamento;
+
+	
+
+	public Integer getC_departamento() {
+		return c_departamento;
+	}
+
+	public void setC_departamento(Integer c_departamento) {
+		this.c_departamento = c_departamento;
+	}
+
+	public String getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+	
 }

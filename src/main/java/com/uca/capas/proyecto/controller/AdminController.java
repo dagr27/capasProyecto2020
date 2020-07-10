@@ -8,17 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.proyecto.domain.CentroEscolar;
 import com.uca.capas.proyecto.domain.Departamento;
 import com.uca.capas.proyecto.domain.Materia;
 import com.uca.capas.proyecto.domain.Municipio;
+import com.uca.capas.proyecto.domain.Usuario;
 import com.uca.capas.proyecto.service.CentroEscolarService;
 import com.uca.capas.proyecto.service.DepartamentoService;
 import com.uca.capas.proyecto.service.MateriaService;
 import com.uca.capas.proyecto.service.MunicipioService;
+import com.uca.capas.proyecto.service.UsuarioService;
 
 @Controller
 public class AdminController {
@@ -30,11 +34,14 @@ public class AdminController {
 	private MunicipioService muniS;
 	@Autowired
 	private DepartamentoService dptoS;
+	@Autowired
+	private UsuarioService userS;
 	
 	private List<Materia> listMaterias= null;
 	private List<CentroEscolar> listEscuelas= null;
 	private List<Municipio> listMunicipio= null;
 	private List<Departamento> listDpto = null;
+	private List<Usuario> listUser = null;
 	
 	
 	
@@ -62,7 +69,39 @@ public class AdminController {
 	@RequestMapping("admin/users")
 	public ModelAndView adminUsers() {
 		ModelAndView mav = new ModelAndView();
+		try {
+			listDpto = dptoS.findAll();
+			listMunicipio = muniS.findAll();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		mav.addObject("municipios", listMunicipio);
+		mav.addObject("departamentos", listDpto);
 		mav.setViewName("admin/users.html");
+		return mav;
+	}
+	
+	@RequestMapping("/saveUsers")
+	public ModelAndView saveUsers(@Valid @ModelAttribute Usuario user, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		if(result.hasErrors()) {
+			try {
+				listMaterias = materiaS.findAll();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.setViewName("admin/materias");
+		}else {
+			listMaterias = null;
+			userS.save(user);
+			try {
+				listMaterias = materiaS.findAll();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.addObject("listMaterias", listMaterias);
+			mav.setViewName("admin/materias");
+		}
 		return mav;
 	}
 	
