@@ -69,14 +69,18 @@ public class AdminController {
 	@RequestMapping("admin/users")
 	public ModelAndView adminUsers() {
 		ModelAndView mav = new ModelAndView();
+		Usuario user = new Usuario();
 		try {
 			listDpto = dptoS.findAll();
 			listMunicipio = muniS.findAll();
+			listUser = userS.findAll();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		mav.addObject("municipios", listMunicipio);
 		mav.addObject("departamentos", listDpto);
+		mav.addObject("listUser", listUser);
+		mav.addObject("user", user);
 		mav.setViewName("admin/users.html");
 		return mav;
 	}
@@ -84,23 +88,28 @@ public class AdminController {
 	@RequestMapping("/saveUsers")
 	public ModelAndView saveUsers(@Valid @ModelAttribute Usuario user, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
+		Usuario usu = new Usuario();
 		if(result.hasErrors()) {
 			try {
-				listMaterias = materiaS.findAll();
+				listUser = userS.findAll();
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			mav.setViewName("admin/materias");
+			mav.setViewName("admin/users");
 		}else {
-			listMaterias = null;
+			listUser = null;
+			user.setEstado(true);
+			user.setTipo("colab");
+			user.setSesion(false);
 			userS.save(user);
 			try {
-				listMaterias = materiaS.findAll();
+				listUser = userS.findAll();
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			mav.addObject("listMaterias", listMaterias);
-			mav.setViewName("admin/materias");
+			mav.addObject("listUser", listUser);
+			mav.addObject("user",usu);
+			mav.setViewName("admin/users");
 		}
 		return mav;
 	}
