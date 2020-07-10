@@ -27,36 +27,31 @@ public class Estudiante {
 	
 	@Column(name="nombres")
 	@NotEmpty(message="No puede estar vacio")
-	@Size(max=30, message="No debe de tener mas de 50 caracteres")
+	@Size(max=50, message="No debe de tener mas de 50 caracteres")
 	private String nombres;
 	
 	@Column(name="apellido")
 	@NotEmpty(message="No puede estar vacio")
-	@Size(max=30, message="No debe de tener mas de 50 caracteres")
+	@Size(max=50, message="No debe de tener mas de 50 caracteres")
 	private String apellido;
 	
-	@Column(name="carrera")
-	@NotEmpty(message="No puede estar vacio")
-	@Size(max=30, message="No debe de tener mas de 50 caracteres")
-	private String carrera;
-	
 	@Column(name="f_nacimiento")
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date f_nacimiento;
 	
 	@Column(name="direccion")
 	@NotEmpty(message="No puede estar vacio")
-	@Size(max=30, message="No debe de tener mas de 50 caracteres")
+	@Size(max=50, message="No debe de tener mas de 50 caracteres")
 	private String direccion;
 	
 	@Column(name="celular")
 	@NotEmpty(message="No puede estar vacio")
-	@Size(max=30, message="No debe de tener mas de 10 caracteres")
+	@Size(max=50, message="No debe de tener mas de 10 caracteres")
 	private String celular;
 	
 	@Column(name="telefono")
 	@NotEmpty(message="No puede estar vacio")
-	@Size(max=30, message="No debe de tener mas de 10 caracteres")
+	@Size(max=50, message="No debe de tener mas de 10 caracteres")
 	private String telefono;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -65,13 +60,18 @@ public class Estudiante {
 	
 	@Column(name="padre")
 	@NotEmpty(message="No puede estar vacio")
-	@Size(max=30, message="No debe de tener mas de 50 caracteres")
+	@Size(max=50, message="No debe de tener mas de 50 caracteres")
 	private String padre;
 	
 	@Column(name="madre")
 	@NotEmpty(message="No puede estar vacio")
-	@Size(max=30, message="No debe de tener mas de 50 caracteres")
+	@Size(max=50, message="No debe de tener mas de 50 caracteres")
 	private String madre;
+	
+	@Column(name="carnet")
+	@NotEmpty(message="No puede estar vacio")
+	@Size(max=9, message="No debe de tener mas de 9 caracteres")
+	private String carnet;
 	
 	
 	
@@ -112,19 +112,6 @@ public class Estudiante {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-
-
-
-	public String getCarrera() {
-		return carrera;
-	}
-
-
-
-	public void setCarrera(String carrera) {
-		this.carrera = carrera;
-	}
-
 
 
 	public Date getF_nacimiento() {
@@ -207,6 +194,16 @@ public class Estudiante {
 
 	public void setMadre(String madre) {
 		this.madre = madre;
+	}
+	
+	public String getCarnet() {
+		return carnet;
+	}
+
+
+
+	public void setCarnet(String carnet) {
+		this.carnet = carnet;
 	}
 
 	

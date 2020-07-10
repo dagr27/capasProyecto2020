@@ -11,12 +11,13 @@ import org.springframework.stereotype.Service;
 import com.uca.capas.proyecto.dao.EstudianteDAO;
 import com.uca.capas.proyecto.domain.Estudiante;
 
+
 @Service
 public class EstudianteServiceImpl implements EstudianteService {
 	
 	@Autowired
 	private EstudianteDAO estudianteDao;
-
+	
 	@Override
 	public List<Estudiante> findAll() throws DataAccessException {
 		return estudianteDao.findAll();
@@ -29,4 +30,5 @@ public class EstudianteServiceImpl implements EstudianteService {
 		
 	}
 
+	
 }
