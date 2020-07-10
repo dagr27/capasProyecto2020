@@ -51,8 +51,10 @@
         <form method="" action="" class="w-75 d-flex flex-column justify-content-center align-items-center">
             <div class="w-100 d-flex mb-3">
                 <input type="text" placeholder="Nombre" class="w-50 form-control">
-                <select type="text" placeholder="" class="w-50 form-control">
-                    <option value="">Municipio</option>
+                <select class="w-50 form-control">
+                    <option th:each="muni : ${municipios}" 
+	  					th:value=${muni.c_municipio} 
+	  					th:text="${muni.municipio}"></option>
                 </select>
             </div>
             <input type="submit" value="Agregar centro escolar" class="form-control btn btn-success w-50 mb-5">

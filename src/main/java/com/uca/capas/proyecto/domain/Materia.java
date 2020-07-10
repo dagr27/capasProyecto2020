@@ -25,7 +25,7 @@ public class Materia {
 	
 	@Column(name="descripcion")
 	@NotEmpty(message="No puede estar vacio")
-	@Size(max=30, message="No debe de tener mas de 50 caracteres")
+	@Size(max=500, message="No debe de tener mas de 50 caracteres")
 	private String descripcion;
 	
 	public Materia() {}
