@@ -21,7 +21,7 @@ public class NotasDAOImpl implements NotasDAO {
 	@Override
 	public List<Notas> findAll() throws DataAccessException {
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT * public.materia_estudiante");
+		sb.append("select * from materia_estudiante");
 		Query query = entityManager.createNativeQuery(sb.toString(), Notas.class);
 		List<Notas> resultSet = query.getResultList();
 		return resultSet;
@@ -32,6 +32,15 @@ public class NotasDAOImpl implements NotasDAO {
 	public void save(Notas nota) throws DataAccessException {
 		entityManager.persist(nota);
 		
+	}
+
+	@Override
+	public List<Notas> findAllByName(String name) throws DataAccessException {
+		StringBuffer sb = new StringBuffer();
+		sb.append("select mat.* from materia_estudiante mat, estudiante e where e.c_estudiante = mat.c_estudiante AND e.nombres='"+name+"'");
+		Query query = entityManager.createNativeQuery(sb.toString(), Notas.class);
+		List<Notas> resultSet = query.getResultList();
+		return resultSet;
 	}
 
 }

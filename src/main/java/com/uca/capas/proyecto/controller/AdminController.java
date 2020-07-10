@@ -208,6 +208,7 @@ public class AdminController {
 		if(result.hasErrors()) {
 			try {
 				listEscuelas = escuelaS.findAll();
+				listMunicipio = muniS.findAll();
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -217,11 +218,13 @@ public class AdminController {
 			try {
 				escuelaS.updateCentro(escuela);
 				listEscuelas = escuelaS.findAll();
+				listMunicipio = muniS.findAll();
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 			mav.addObject("school", newone);
 			mav.addObject("listSchool", listEscuelas);
+			mav.addObject("municipios", listMunicipio);
 			mav.setViewName("admin/school");
 		}
 		return mav;

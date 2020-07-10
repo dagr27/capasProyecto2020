@@ -50,7 +50,7 @@
         <h1 class="mt-5">Centros Escolares</h1>
         <form th:action="@{/updateSchool}" th:object="${schoolUp}" method="POST" class="w-75 d-flex flex-column justify-content-center align-items-center">
             <div class="w-100 d-flex mb-3">
-            	<input type="text" placeholder="Nombre" th:field="*{c_centro_escolar}" class="w-50 form-control">
+            	<input type="hidden" placeholder="Nombre" th:field="*{c_centro_escolar}" class="w-50 form-control">
                 <input type="text" placeholder="Nombre" th:field="*{nombre}" class="w-50 form-control">
             </div>
             <input type="submit" value="Modificar Centro escolar" class="form-control btn btn-warning w-50 mb-5 text-white">

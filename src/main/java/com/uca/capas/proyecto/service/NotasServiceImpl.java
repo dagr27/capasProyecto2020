@@ -27,5 +27,10 @@ public class NotasServiceImpl implements NotasService {
 		notasDao.save(nota);
 		
 	}
+
+	@Override
+	public List<Notas> findAllByName(String name) throws DataAccessException {
+		return notasDao.findAllByName(name);
+	}
 	
 }
