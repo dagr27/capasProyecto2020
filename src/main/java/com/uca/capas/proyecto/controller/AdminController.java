@@ -119,6 +119,7 @@ public class AdminController {
 			mav.setViewName("admin/school");
 		}else {
 			listEscuelas = null;
+			listMunicipio = null;
 			escuelaS.save(escuela);
 			try {
 				listEscuelas = escuelaS.findAll();
