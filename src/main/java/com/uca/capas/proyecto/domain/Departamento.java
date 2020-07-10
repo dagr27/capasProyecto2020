@@ -21,9 +21,6 @@ public class Departamento {
 	@NotEmpty(message="No puede estar vacio")
 	@Size(max=30, message="No debe de tener mas de 50 caracteres")
 	private String departamento;
-<<<<<<< HEAD
-
-	
 
 	public Integer getC_departamento() {
 		return c_departamento;
@@ -31,17 +28,6 @@ public class Departamento {
 
 	public void setC_departamento(Integer c_departamento) {
 		this.c_departamento = c_departamento;
-=======
-	
-	public Departamento() {}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
->>>>>>> e7e7aa6849585d51d1e4acbccf6370e67f0870c5
 	}
 
 	public String getDepartamento() {
@@ -51,8 +37,6 @@ public class Departamento {
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
-<<<<<<< HEAD
 	
-=======
->>>>>>> e7e7aa6849585d51d1e4acbccf6370e67f0870c5
+	
 }
