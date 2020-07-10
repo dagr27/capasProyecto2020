@@ -36,7 +36,7 @@ public class Usuario {
 	private String apellido;
 	
 	@Column(name="f_nacimiento")
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date f_nacimiento;
 	
 	@ManyToOne(fetch=FetchType.LAZY)

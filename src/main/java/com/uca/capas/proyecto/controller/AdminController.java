@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.proyecto.domain.CentroEscolar;
+import com.uca.capas.proyecto.domain.Departamento;
 import com.uca.capas.proyecto.domain.Materia;
 import com.uca.capas.proyecto.domain.Municipio;
 import com.uca.capas.proyecto.service.CentroEscolarService;
+import com.uca.capas.proyecto.service.DepartamentoService;
 import com.uca.capas.proyecto.service.MateriaService;
 import com.uca.capas.proyecto.service.MunicipioService;
 
@@ -26,10 +28,13 @@ public class AdminController {
 	private CentroEscolarService escuelaS;
 	@Autowired
 	private MunicipioService muniS;
+	@Autowired
+	private DepartamentoService dptoS;
 	
 	private List<Materia> listMaterias= null;
 	private List<CentroEscolar> listEscuelas= null;
 	private List<Municipio> listMunicipio= null;
+	private List<Departamento> listDpto = null;
 	
 	
 	
@@ -52,6 +57,12 @@ public class AdminController {
 		mav.addObject("listMaterias", listMaterias);
 		mav.addObject("materia", materia);
 		mav.setViewName("admin/materias");
+		return mav;
+	}
+	@RequestMapping("admin/users")
+	public ModelAndView adminUsers() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/users.html");
 		return mav;
 	}
 	
@@ -79,16 +90,48 @@ public class AdminController {
 		return mav;
 	}
 	
-	@RequestMapping("admin/escuelas")
+	@RequestMapping("admin/school")
 	public ModelAndView escuelasScreen() {
 		ModelAndView mav = new ModelAndView();
+		CentroEscolar escuela = new CentroEscolar();
 		try {
+			listEscuelas = escuelaS.findAll();
 			listMunicipio = muniS.findAll();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		mav.addObject("listSchool", listEscuelas);
 		mav.addObject("municipios", listMunicipio);
+		mav.addObject("school", escuela);
 		mav.setViewName("admin/school");
+		return mav;
+	}
+	
+	@RequestMapping("/saveEscuela")
+	public ModelAndView saveEscuela(@Valid @ModelAttribute CentroEscolar escuela, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		if(result.hasErrors()) {
+			try {
+				listEscuelas = escuelaS.findAll();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.setViewName("admin/school");
+		}else {
+			listEscuelas = null;
+			escuelaS.save(escuela);
+			try {
+				listEscuelas = escuelaS.findAll();
+				listMunicipio = muniS.findAll();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			CentroEscolar school = new CentroEscolar();
+			mav.addObject("school",school);
+			mav.addObject("municipios", listMunicipio);
+			mav.addObject("listSchool", listEscuelas);
+			mav.setViewName("admin/school");
+		}
 		return mav;
 	}
 	
