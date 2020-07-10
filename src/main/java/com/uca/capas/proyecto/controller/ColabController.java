@@ -13,8 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.proyecto.domain.CentroEscolar;
 import com.uca.capas.proyecto.domain.Estudiante;
+import com.uca.capas.proyecto.domain.Materia;
+import com.uca.capas.proyecto.domain.Notas;
 import com.uca.capas.proyecto.service.CentroEscolarService;
 import com.uca.capas.proyecto.service.EstudianteService;
+import com.uca.capas.proyecto.service.MateriaService;
+import com.uca.capas.proyecto.service.NotasService;
 
 @Controller
 public class ColabController {
@@ -23,6 +27,12 @@ public class ColabController {
 	
 	@Autowired
 	private CentroEscolarService centroService;
+	
+	@Autowired
+	private MateriaService materiaService;
+	
+	@Autowired
+	private NotasService notasService;
 	
 	@RequestMapping("colab/home")
 	public ModelAndView colabHome() {
@@ -72,10 +82,49 @@ public class ColabController {
 		return mav;
 	}
 	
-	@RequestMapping("colab/notas")
-	public ModelAndView colabNotas() {
+	@RequestMapping("colab/materias")
+	public ModelAndView colabMaterias() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("colaborator/notas");
+		Notas nota = new Notas();
+		List<Materia> materias = null;
+		List<Estudiante> estudiantes = null;
+		try {
+				materias = materiaService.findAll();
+				estudiantes = estudianteService.findAll();
+				
+		}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			mav.addObject("estudiantes", estudiantes);
+			mav.addObject("materias",materias);
+			mav.addObject("notas",nota);
+			mav.setViewName("colaborator/materias");
+			return mav;
+	}
+	
+	@RequestMapping("/saveMat")
+	public ModelAndView saveMateria(@Valid @ModelAttribute Notas note, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		Notas nota = new Notas();
+		List<Materia> materias = null;
+		List<Estudiante> estudiantes = null;
+		if(!result.hasErrors()) {
+		try {
+				notasService.save(note);
+				materias = materiaService.findAll();
+				estudiantes = estudianteService.findAll();
+				
+		}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			mav.addObject("notas", nota);
+			mav.addObject("estudiantes", estudiantes);
+			mav.addObject("materias",materias);
+			mav.setViewName("colaborator/materias");
+			}
+		
 		return mav;
 	}
 	

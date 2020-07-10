@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -48,17 +48,23 @@
     <div class="row">
       <div class="col-lg-12 text-center d-flex flex-column justify-content-center align-items-center">
         <h1 class="mt-5">Asignar Materia</h1>
-        <form method="" action="" class="w-75 d-flex flex-column justify-content-center align-items-center">
+        <form method="post" th:action="@{/saveMat}" th:object="${notas}" class="w-75 d-flex flex-column justify-content-center align-items-center">
             <div class="w-100 d-flex mb-3">
-                <select name="" id="" class="w-50 form-control">
-                    <option value="">Materia</option>
-                </select>
-                <select name="" id="" class="w-50 form-control">
-                    <option value="">Estudiante</option>
-                </select>
-                <input type="text" placeholder="Año" class="w-50 form-control">
-                <input type="text" placeholder="Ciclo" class="w-50 form-control">
-                <input type="text" placeholder="Nota" class="w-50 form-control">
+                <select class="form-control mb-1" th:field="*{c_materia.c_materia}">
+                <option value="">Materia
+                <option th:each="mat : ${materias}" 
+	  					th:value=${mat.c_materia} 
+	  					th:text="${mat.nombre}"></option>
+            </select>
+                <select class="form-control mb-1" th:field="*{c_estudiante.c_estudiante}">
+                <option value="">Estudiante
+                <option th:each="est : ${estudiantes}" 
+	  					th:value=${est.c_estudiante} 
+	  					th:text="${est.nombres}"></option>
+            </select>
+                <input type="text" placeholder="Año" class="w-50 form-control"  th:field="*{anio}">
+                <input type="text" placeholder="Ciclo" class="w-50 form-control"  th:field="*{ciclo}">
+                <input type="text" placeholder="Nota" class="w-50 form-control"  th:field="*{nota}">
             </div>
             <input type="submit" value="Asignar" class="form-control btn btn-success w-25 mb-5">
         </form>

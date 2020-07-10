@@ -65,6 +65,7 @@
             </div>
             <input type="text" class="form-control mb-1" placeholder="Direccion" th:field="*{direccion}">
             <select class="form-control mb-1" th:field="*{c_centro_escolar.c_centro_escolar}">
+            	<option value="">Centro Escolar
                 <option th:each="centro : ${centros}" 
 	  					th:value=${centro.c_centro_escolar} 
 	  					th:text="${centro.nombre}"></option>
