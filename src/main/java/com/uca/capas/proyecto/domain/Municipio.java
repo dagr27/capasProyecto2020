@@ -29,6 +29,8 @@ public class Municipio {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="c_departamento")
 	private Departamento c_departamento;
+	
+	public Municipio() {}
 
 	public Integer getC_municipio() {
 		return c_municipio;
@@ -53,7 +55,4 @@ public class Municipio {
 	public void setC_departamento(Departamento c_departamento) {
 		this.c_departamento = c_departamento;
 	}
-	
-	
-
 }

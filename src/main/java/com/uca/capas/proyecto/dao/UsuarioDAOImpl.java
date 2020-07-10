@@ -30,8 +30,27 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	@Override
 	@Transactional
 	public void save(Usuario usuario) throws DataAccessException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub)
 		entityManager.persist(usuario);
+	}
+
+	@Override
+	public Usuario validLogin(String usuario, String password) throws DataAccessException {
+		// TODO Auto-generated method stub		
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT * FROM public.usuario WHERE usuario = " + "'" + usuario + "'");
+		
+		Query query = entityManager.createNativeQuery(sb.toString(), Usuario.class);
+		List<Usuario> usuarios = query.getResultList();
+		if (usuarios == null || (usuarios != null && usuarios.size() == 0)) return null;
+		
+		Usuario user = usuarios.get(0);
+		if (user != null && user.getEstado() && !user.getSesion() && user.getPassword().equals(password)) {
+			// RETURN USER ROLE
+			return user; 
+		}
+		
+		return null;
 	}
 
 }

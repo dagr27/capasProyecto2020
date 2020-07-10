@@ -2,6 +2,7 @@ package com.uca.capas.proyecto.service;
 
 import java.util.List;
 
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import com.uca.capas.proyecto.domain.Usuario;
 public class UsuarioServiceImpl implements UsuarioService {
 	@Autowired
 	private UsuarioDAO usuarioDAO;
-	
+
 	@Override
 	public List<Usuario> findAll() throws DataAccessException {
 		// TODO Auto-generated method stub
@@ -27,6 +28,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public void save(Usuario usuario) throws DataAccessException {
 		// TODO Auto-generated method stub
 		usuarioDAO.save(usuario);
+	}
+
+	@Override
+	public Usuario validLogin(String usuario, String password) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return usuarioDAO.validLogin(usuario, password);
 	}
 
 }

@@ -36,7 +36,7 @@ public class Usuario {
 	private String apellido;
 	
 	@Column(name="f_nacimiento")
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date f_nacimiento;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -49,7 +49,7 @@ public class Usuario {
 	
 	@Column(name="direccion")
 	@NotEmpty(message="No puede estar vacio")
-	@Size(max=30, message="No debe de tener mas de 50 caracteres")
+	@Size(max=100, message="No debe de tener mas de 100 caracteres")
 	private String direccion;
 	
 	@Column(name="estado")
@@ -61,11 +61,10 @@ public class Usuario {
 	private String usuario;
 	
 	@Column(name="password")
+	@NotEmpty(message="No puede estar vacio")
 	private String password;
 	
 	@Column(name="tipo")
-	@NotEmpty(message="No puede estar vacio")
-	@Size(max=30, message="No debe de tener mas de 50 caracteres")
 	private String tipo;
 	
 	@Column(name="sesion")
@@ -168,8 +167,4 @@ public class Usuario {
 	public void setSesion(Boolean sesion) {
 		this.sesion = sesion;
 	}
-
-	
-	
-	
 }

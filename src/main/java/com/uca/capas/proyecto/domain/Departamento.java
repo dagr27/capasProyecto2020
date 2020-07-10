@@ -21,4 +21,22 @@ public class Departamento {
 	@NotEmpty(message="No puede estar vacio")
 	@Size(max=30, message="No debe de tener mas de 50 caracteres")
 	private String departamento;
+	
+	public Departamento() {}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
 }
