@@ -3,6 +3,7 @@ package com.uca.capas.proyecto.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
@@ -14,7 +15,7 @@ import com.uca.capas.proyecto.domain.Notas;
 
 @Repository
 public class NotasDAOImpl implements NotasDAO {
-	@PersistenceUnit(unitName="capas")
+	@PersistenceContext(unitName="capas")
 	private EntityManager entityManager;
 	
 	@Override
