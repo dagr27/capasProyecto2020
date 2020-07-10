@@ -68,6 +68,9 @@ public class Usuario {
 	@Size(max=30, message="No debe de tener mas de 50 caracteres")
 	private String tipo;
 	
+	@Column(name="sesion")
+	private Boolean sesion;
+	
 	public Usuario() {}
 
 	public Integer getC_usuario() {
@@ -156,6 +159,14 @@ public class Usuario {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public Boolean getSesion() {
+		return sesion;
+	}
+
+	public void setSesion(Boolean sesion) {
+		this.sesion = sesion;
 	}
 
 	
