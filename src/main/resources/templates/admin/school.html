@@ -48,10 +48,10 @@
     <div class="row">
       <div class="col-lg-12 text-center d-flex flex-column justify-content-center align-items-center">
         <h1 class="mt-5">Centros Escolares</h1>
-        <form method="" action="" class="w-75 d-flex flex-column justify-content-center align-items-center">
+        <form th:action="@{/saveEscuela}" th:object="${school}" class="w-75 d-flex flex-column justify-content-center align-items-center">
             <div class="w-100 d-flex mb-3">
-                <input type="text" placeholder="Nombre" class="w-50 form-control">
-                <select class="w-50 form-control">
+                <input type="text" placeholder="Nombre" th:field="*{nombre}" class="w-50 form-control">
+                <select th:field="*{c_municipio.c_municipio}" class="w-50 form-control">
                     <option th:each="muni : ${municipios}" 
 	  					th:value=${muni.c_municipio} 
 	  					th:text="${muni.municipio}"></option>
@@ -70,11 +70,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr th:each="sc : ${listSchool}">
                     <td><a href="">Editar</a></td>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
+                    <th th:text="${sc.c_centro_escolar}"></th>
+                    <td th:text="${sc.nombre}"></td>
+                    <td th:text="${sc.c_municipio.municipio}"></td>
                   </tr>
                 </tbody>
               </table>
