@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
   <meta charset="utf-8">
@@ -8,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Bare - Start Bootstrap Template</title>
+  <title>INICIAR SESIÓN</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -24,35 +23,45 @@
   <div class="container relative">
     <div class="row">
       <div class="col-lg-12 w-100 d-flex flex-column align-items-center justify-content-center vh-100" id="inside">
-        <form class="w-50 bg-login p-5 rounded shadow" action="" id="login">
-          <h2 class="text-center text-white">Inicia Sesion</h2>
-          <input type="text" class="form-control mb-2" placeholder="Usuario">
+        <form class="w-50 bg-login p-5 rounded shadow" th:action="@{/iniciarSesion}" id="login" method="post">
+          <h2 class="text-center text-white">Iniciar Sesión</h2>
+          <input type="text" class="form-control mb-2" name="user" placeholder="Usuario">
           <p class="text-white mb-2"></p>
-          <input type="password" class="form-control mb-2" placeholder="Contraseña">
+          <input type="password" class="form-control mb-2" name="pwd" placeholder="Contraseña">
           <p class="text-white mb-2"></p>
           <input type="submit" class="form-control btn btn-success mb-3" value="Iniciar Sesion" name="send" id="send">
-          <p class="text-center text-white">¿Necesitas una cuenta? <a id="register" class="text-decoration-none">Registrate</a></p>
+          <p class="text-center text-white">¿Necesitas una cuenta? <a id="register" class="text-decoration-none" style="cursor: pointer; border-bottom: 1px solid #fff;">Registrate</a></p>
         </form>
-        <form style="display: none;" class="w-50 bg-login p-5 rounded shadow" action="" id="registro">
+        <form style="display: none;" class="w-50 bg-login p-5 rounded shadow" th:action="@{/registrate}" th:object="${usuario}" id="registro" method="post">
           <h2 class="text-center text-white">Registrate</h2>
           <div class="w-100 mb-1 d-flex">
-            <input type="text"class="w-50 form-control" placeholder="Nombre">
-            <input type="text"class="w-50 form-control" placeholder="Apellido">
+            <input type="text"class="w-50 form-control" th:field="*{nombre}" placeholder="Nombre">
+            <input type="text"class="w-50 form-control" th:field="*{apellido}" placeholder="Apellido">
           </div>
-          <input type="text" class="form-control mb-1" placeholder="Usuario">
-          <input type="password" class="form-control mb-1" placeholder="Contraseña">
-          <input type="date" class="form-control mb-1" placeholder="Fecha de Nacimiento">
-          <div class="w-100 mb-1 d-flex">
-            <select name="" id="" class="w-50 form-control">
-              <option value="">Departamento</option>
+          <input type="text" class="form-control mb-1" th:field="*{usuario}" placeholder="Usuario">
+          <input type="password" class="form-control mb-1" th:field="*{password}" placeholder="Contraseña">
+          <input type="date" class="form-control mb-1" th:field="*{f_nacimiento}" placeholder="Fecha de Nacimiento">
+          <div class="w-100 mb-1 d-flex">          
+            <select class="w-50 form-control" th:field="*{c_departamento.id}">
+            	<option value="">Departamento
+                <option 
+                	th:each="depa : ${departamentos}" 
+					th:value=${depa.id} 
+					th:text="${depa.departamento}">
+				</option>
             </select>
-            <select name="" id="" class="w-50 form-control">
-              <option value="">Municipio</option>
+            <select class="w-50 form-control" th:field="*{c_municipio.c_municipio}">
+            	<option value="">Municipio
+                <option 
+                	th:each="muni : ${municipios}" 
+					th:value=${muni.c_municipio} 
+					th:text="${muni.municipio}">
+				</option>
             </select>
           </div>
-          <input type="text" class="form-control mb-1" placeholder="Direccion">
-          <input type="submit" class="form-control btn btn-success mb-3" value="Iniciar Sesion" name="send" id="send">
-          <p class="text-center text-white">¿Ya tienes cuenta? <a id="show-log" class="text-decoration-none">Regisrarse</a></p>
+          <input type="text" class="form-control mb-1" th:field="*{direccion}" placeholder="Direccion">
+          <input type="submit" class="form-control btn btn-success mb-3" value="Registrate" name="send" id="send">
+          <p class="text-center text-white">¿Ya tienes cuenta? <a id="show-log" class="text-decoration-none" style="cursor: pointer; border-bottom: 1px solid #fff;">Iniciar Sesión</a></p>
         </form>
       </div>
     </div>
@@ -63,13 +72,12 @@
     document.getElementById("register").addEventListener("click", function(){
       document.getElementById("registro").style.cssText = 'display:inline !important';
       document.getElementById("login").style.display ='none';
-
-  });
-  document.getElementById("show-log").addEventListener("click", function(){
+  	});
+    
+  	document.getElementById("show-log").addEventListener("click", function(){
       document.getElementById("login").style.cssText = 'display:inline !important';
       document.getElementById("registro").style.display ='none';
-
-  });
+  	});
   </script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
