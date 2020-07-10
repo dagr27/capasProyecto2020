@@ -66,6 +66,43 @@ public class AdminController {
 		mav.setViewName("admin/materias");
 		return mav;
 	}
+	
+	@RequestMapping("/editMateria")
+	public ModelAndView editMateria(@RequestParam(value="c_materia") int c_materia) {
+		ModelAndView mav = new ModelAndView();
+		Materia materias = null;
+		materias = materiaS.findById(c_materia);
+		mav.addObject("materiaUp", materias);
+		mav.setViewName("admin/materiaEdit");
+		return mav;
+	}
+
+	@PostMapping("/updateMateria")
+	public ModelAndView updateMateria(@Valid @ModelAttribute Materia materia, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		Materia newone = new Materia();
+		if(result.hasErrors()) {
+			try {
+				listMaterias = materiaS.findAll();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.setViewName("admin/materias");
+		}else {
+			listMaterias = null;
+			try {
+				materiaS.updateMat(materia);
+				listMaterias = materiaS.findAll();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.addObject("materia", newone);
+			mav.addObject("listMaterias", listMaterias);
+			mav.setViewName("admin/materias");
+		}
+		return mav;
+	}
+	
 	@RequestMapping("admin/users")
 	public ModelAndView adminUsers() {
 		ModelAndView mav = new ModelAndView();
@@ -154,6 +191,42 @@ public class AdminController {
 		mav.setViewName("admin/school");
 		return mav;
 	}
+	
+	@RequestMapping("/editSchool")
+	public ModelAndView editSchool(@RequestParam(value="c_centro_escolar") Integer c_centro_escolar) {
+		ModelAndView mav = new ModelAndView();
+		CentroEscolar escuela = null;
+		escuela = escuelaS.findByid(c_centro_escolar);
+		mav.addObject("schoolUp", escuela);
+		mav.setViewName("admin/schoolEdit");
+		return mav;
+	}
+	@PostMapping("/updateSchool")
+	public ModelAndView updateSchool(@Valid @ModelAttribute CentroEscolar escuela, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		CentroEscolar newone = new CentroEscolar();
+		if(result.hasErrors()) {
+			try {
+				listEscuelas = escuelaS.findAll();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.setViewName("admin/school");
+		}else {
+			listEscuelas = null;
+			try {
+				escuelaS.updateCentro(escuela);
+				listEscuelas = escuelaS.findAll();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.addObject("school", newone);
+			mav.addObject("listSchool", listEscuelas);
+			mav.setViewName("admin/school");
+		}
+		return mav;
+	}
+	
 	
 	@RequestMapping("/saveEscuela")
 	public ModelAndView saveEscuela(@Valid @ModelAttribute CentroEscolar escuela, BindingResult result) {

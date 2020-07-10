@@ -10,5 +10,9 @@ public interface MateriaService {
 	public List<Materia> findAll() throws DataAccessException;
 	
 	public void save(Materia materia) throws DataAccessException;
+	
+	public Materia findById(Integer id) throws DataAccessException;
+	
+	public void updateMat(Materia mat) throws DataAccessException;
 
 }

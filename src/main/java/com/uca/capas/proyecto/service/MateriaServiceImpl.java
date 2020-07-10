@@ -28,4 +28,17 @@ public class MateriaServiceImpl implements MateriaService {
 		
 	}
 
+	@Override
+	public Materia findById(Integer id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return materiaDAO.findById(id);
+	}
+
+	@Override
+	@Transactional
+	public void updateMat(Materia mat) throws DataAccessException {
+		materiaDAO.updateMat(mat);
+		
+	}
+
 }

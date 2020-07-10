@@ -29,4 +29,15 @@ public class CentroEscolarServiceImpl implements CentroEscolarService {
 		
 	}
 
+	@Override
+	public CentroEscolar findByid(Integer id) throws DataAccessException {
+		return centroDao.findByid(id);
+	}
+
+	@Override
+	public void updateCentro(CentroEscolar escuela) throws DataAccessException {
+		centroDao.updateCentro(escuela);
+		
+	}
+
 }

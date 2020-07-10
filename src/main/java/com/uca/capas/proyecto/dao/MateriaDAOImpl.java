@@ -20,7 +20,7 @@ public class MateriaDAOImpl implements MateriaDAO {
 	@Override
 	public List<Materia> findAll() throws DataAccessException {
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT * FROM public.materia");
+		sb.append("SELECT * FROM public.materia order by c_materia asc");
 		Query query = entityManager.createNativeQuery(sb.toString(), Materia.class);
 		List<Materia> resultSet = query.getResultList();
 		return resultSet;
@@ -31,6 +31,26 @@ public class MateriaDAOImpl implements MateriaDAO {
 	public void save(Materia materia) throws DataAccessException {
 		entityManager.persist(materia);
 		
+	}
+
+	@Override
+	public Materia findById(Integer id) throws DataAccessException {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT * FROM public.materia WHERE c_materia= '"+id.toString()+"'");
+		Query query = entityManager.createNativeQuery(sb.toString(), Materia.class);
+		List<Materia> mat = query.getResultList();
+		
+		Materia materia = mat.get(0);
+		return materia;
+	}
+
+	@Override
+	@Transactional
+	public void updateMat(Materia mat) throws DataAccessException {
+		StringBuffer sb = new StringBuffer();
+		sb.append("UPDATE public.materia set nombre='"+mat.getNombre()+"', descripcion='"+mat.getDescripcion()+"'  WHERE c_materia= '"+mat.getC_materia().toString()+"'");
+		Query query = entityManager.createNativeQuery(sb.toString(), Materia.class);
+		query.executeUpdate();
 	}
 
 }

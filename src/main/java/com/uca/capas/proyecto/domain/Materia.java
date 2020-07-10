@@ -1,10 +1,12 @@
 package com.uca.capas.proyecto.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -14,8 +16,8 @@ import javax.validation.constraints.Size;
 public class Materia {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="c_materia")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer c_materia;
 	
 	@Column(name="nombre")

@@ -10,4 +10,8 @@ public interface CentroEscolarService {
 	public List<CentroEscolar> findAll() throws DataAccessException;
 	
 	public void save(CentroEscolar escuela) throws DataAccessException;
+	
+	public CentroEscolar findByid(Integer id) throws DataAccessException;
+	
+	public void updateCentro(CentroEscolar escuela) throws DataAccessException;
 }

@@ -21,7 +21,7 @@ public class CentroEscolarDAOImpl implements CentroEscolarDAO {
 	@Override
 	public List<CentroEscolar> findAll() throws DataAccessException {
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT * from public.centro_escolar");
+		sb.append("SELECT * from public.centro_escolar order by c_centro_escolar asc");
 		Query query = entityManager.createNativeQuery(sb.toString(),CentroEscolar.class);	
 		List<CentroEscolar> resultSet = query.getResultList();
 		return resultSet;
@@ -31,6 +31,27 @@ public class CentroEscolarDAOImpl implements CentroEscolarDAO {
 	@Transactional
 	public void save(CentroEscolar escuela) throws DataAccessException {
 		entityManager.persist(escuela);
+		
+	}
+
+	@Override
+	public CentroEscolar findByid(Integer id) throws DataAccessException {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT * FROM public.centro_escolar WHERE c_centro_escolar= '"+id.toString()+"'");
+		Query query = entityManager.createNativeQuery(sb.toString(), CentroEscolar.class);
+		List<CentroEscolar> ce = query.getResultList();
+		
+		CentroEscolar centro = ce.get(0);
+		return centro;
+	}
+
+	@Override
+	@Transactional
+	public void updateCentro(CentroEscolar escuela) throws DataAccessException {
+		StringBuffer sb = new StringBuffer();
+		sb.append("UPDATE public.centro_escolar set nombre='"+escuela.getNombre()+"'  WHERE c_centro_escolar= '"+escuela.getC_centro_escolar().toString()+"'");
+		Query query = entityManager.createNativeQuery(sb.toString(), CentroEscolar.class);
+		query.executeUpdate();
 		
 	}
 
