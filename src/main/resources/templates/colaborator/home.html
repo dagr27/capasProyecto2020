@@ -27,13 +27,13 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Inicio</a>
+            <a class="nav-link" th:href="@{'home'}">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="materias.html">Asignar Materias</a>
+            <a class="nav-link" th:href="@{'materias'}">Asignar Materias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="expediente.html">Crear Expediente</a>
+            <a class="nav-link" th:href="@{'expediente'}">Crear Expediente</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Cerrar Sesion</a>
@@ -51,26 +51,24 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Acciones</th>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
-              <th scope="col">Materias Aprobadas</th>
-              <th scope="col">Materias Reprobadas</th>
+              <th scope="col">Materia</th>
+              <th scope="col">Nota</th>
               <th scope="col">Promedio</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th><a href="">Materia</a> <a href="">Expediente</a></th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-            </tr>
-          </tbody>
+                  <tr th:each="sc : ${notasList}">
+                    <th th:text="${sc.c_estudiante.nombres}"></th>
+                    <td th:text="${sc.c_estudiante.apellido}"></td>
+                    <td th:text="${sc.c_materia.nombre}"></td>
+                    <td th:text="${sc.nota}"></td>
+                    <td th:text="${sc.nota <= 6 } ? 'Reprobado':'Aprobado'"></td>
+                  </tr>
+                </tbody>
         </table>
-        <a href="notas.html">Ver Notas por estudiante</a>
+        <a th:href="@{'notas'}">Ver Notas por estudiante</a>
       </div>
     </div>
   </div>

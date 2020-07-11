@@ -50,8 +50,8 @@
         <h1 class="mt-5">Materias</h1>
         <form th:action="@{/saveMateria}" th:object="${materia}" method="post" class="w-75 d-flex flex-column justify-content-center align-items-center">
             <div class="w-100 d-flex mb-3">
-                <input type="text" th:field="*{nombre}" class="w-50 form-control">
-                <input type="text" th:field="*{descripcion}" class="w-50 form-control">
+                <input type="text" th:field="*{nombre}" class="w-50 form-control" placeholder="Nombre">
+                <input type="text" th:field="*{descripcion}" class="w-50 form-control" placeholder="Descripcion">
             </div>
             <input type="submit" value="Agregar materia" class="form-control btn btn-success w-50 mb-5">
         </form>

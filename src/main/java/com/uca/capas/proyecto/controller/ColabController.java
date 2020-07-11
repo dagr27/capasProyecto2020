@@ -39,6 +39,14 @@ public class ColabController {
 	@RequestMapping("colab/home")
 	public ModelAndView colabHome() {
 		ModelAndView mav = new ModelAndView();
+		List<Notas> notasList = null;
+		try {
+			notasList = notasService.findAll();
+			mav.addObject("notasList",notasList);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		mav.setViewName("colaborator/home");
 		return mav;
 	}
@@ -78,6 +86,7 @@ public class ColabController {
 			
 			mav.addObject("estudiante", estudiante);
 			mav.addObject("centros",centros);
+			mav.addObject("redireccionar", "Regresar");
 			mav.setViewName("colaborator/expediente");
 			}
 		
@@ -194,7 +203,8 @@ public class ColabController {
 				e.printStackTrace();
 			}
 			mav.addObject("notas", nota);
-			mav.addObject("listNotas", notasList);
+			mav.addObject("redireccionar", "Regresar");
+			mav.addObject("notasList", notasList);
 			mav.setViewName("colaborator/notas");
 		}
 		return mav;

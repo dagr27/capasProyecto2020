@@ -20,20 +20,20 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-      <a class="navbar-brand" href="#">School Team</a>
+      <a class="navbar-brand" href="#">Start Bootstrap</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link" th:href="@{'home'}">Inicio</a>
+          </li>
           <li class="nav-item active">
-            <a class="nav-link" href="home.html">Inicio</a>
+            <a class="nav-link" th:href="@{'materias'}">Asignar Materias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="materias.html">Asignar Materias</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="expediente.html">Crear Expediente</a>
+            <a class="nav-link" th:href="@{'expediente'}">Crear Expediente</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Cerrar Sesion</a>
@@ -51,12 +51,13 @@
         <form method="post" th:action="@{/filtrar}" class="w-75 d-flex flex-column justify-content-center align-items-center">
             <div class="w-100 d-flex mb-3 ">
                 <select name="" id="" class="form-control w-25">
-                    <option value="">Filtrar por</option>
+                    <option value="">Nombre:</option>
                 </select>
                 <input type="text" name="nombre" placeholder="Busqueda" class="w-50 form-control">
                 <input type="submit" value="Buscar" class="form-control btn btn-success w-25 mb-5">
             </div>
         </form>
+        <a th:href="@{'colab/home'}" th:text="${redireccionar}"></a>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -65,17 +66,15 @@
               <th scope="col">Apellido</th>
               <th scope="col">Materia</th>
               <th scope="col">Nota</th>
-              <th scope="col">Resultado</th>
             </tr>
           </thead>
           <tbody>
                   <tr th:each="sc : ${notasList}">
-                    <td><a th:href="@{'/editNotas?c_nota='+${sc.c_materia_estudiante}}">Editar</a></td>
+                    <td><a th:href="@{'/editNotas?c_notas='+${sc.c_materia_estudiante}}">Editar</a></td>
                     <th th:text="${sc.c_estudiante.nombres}"></th>
                     <td th:text="${sc.c_estudiante.apellido}"></td>
                     <td th:text="${sc.c_materia.nombre}"></td>
                     <td th:text="${sc.nota}"></td>
-                    <td th:text="${sc.nota <= 6 } ? 'Reprobado':'Aprobado'"></td>
                   </tr>
                 </tbody>
         </table>

@@ -47,5 +47,10 @@ public class NotasServiceImpl implements NotasService {
 		notasDao.updateNota(nota);
 	}
 
+	@Override
+	public List<Notas> findAllInit() throws DataAccessException {
+		return notasDao.findAllInit();
+	}
+
 	
 }

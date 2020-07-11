@@ -11,6 +11,9 @@ public interface NotasService {
 	
 	public void save(Notas nota) throws DataAccessException;
 	
+	public List<Notas> findAllInit() throws DataAccessException;
+	
+	
 	public List<Notas> findAllByName(String name) throws DataAccessException;
 	
 	public Notas findById(Integer id) throws DataAccessException;

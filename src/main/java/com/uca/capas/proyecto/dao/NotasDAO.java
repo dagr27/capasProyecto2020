@@ -6,9 +6,12 @@ import org.springframework.dao.DataAccessException;
 
 import com.uca.capas.proyecto.domain.Materia;
 import com.uca.capas.proyecto.domain.Notas;
+import com.uca.capas.proyecto.domain.printNotas;
 
 public interface NotasDAO {
 	public List<Notas> findAll() throws DataAccessException;
+	
+	public List<Notas> findAllInit() throws DataAccessException;
 	
 	public List<Notas> findAllByName(String name) throws DataAccessException;
 	
