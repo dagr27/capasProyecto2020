@@ -151,6 +151,47 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping("/editUsers")
+	public ModelAndView editUsers(@RequestParam(value="c_usuario") Integer c_usuario) {
+		ModelAndView mav = new ModelAndView();
+		Usuario usuario = null;
+		usuario = userS.findById(c_usuario);
+		mav.addObject("userUp", usuario);
+		mav.setViewName("admin/usersEdit");
+		return mav;
+	}
+	@PostMapping("/updateUsers")
+	public ModelAndView updateUsers(@Valid @ModelAttribute Usuario usu, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		Usuario newone = new Usuario();
+		if(result.hasErrors()) {
+			try {
+				listDpto = dptoS.findAll();
+				listMunicipio = muniS.findAll();
+				listUser = userS.findAll();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.setViewName("admin/users");
+		}else {
+			listEscuelas = null;
+			try {
+				userS.uodate(usu);
+				listDpto = dptoS.findAll();
+				listMunicipio = muniS.findAll();
+				listUser = userS.findAll();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.addObject("municipios", listMunicipio);
+			mav.addObject("departamentos", listDpto);
+			mav.addObject("listUser", listUser);
+			mav.addObject("user", newone);
+			mav.setViewName("admin/users");
+		}
+		return mav;
+	}
+	
 	@RequestMapping("/saveMateria")
 	public ModelAndView saveMateria(@Valid @ModelAttribute Materia materia, BindingResult result) {
 		ModelAndView mav = new ModelAndView();

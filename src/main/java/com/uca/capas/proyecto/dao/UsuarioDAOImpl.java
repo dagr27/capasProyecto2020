@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.uca.capas.proyecto.domain.Materia;
 import com.uca.capas.proyecto.domain.Usuario;
 
 @Repository
@@ -51,6 +52,27 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		}
 		
 		return null;
+	}
+
+	@Override
+	@Transactional
+	public Usuario findById(Integer id) throws DataAccessException {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT * FROM public.usuario WHERE c_usuario= '"+id.toString()+"'");
+		Query query = entityManager.createNativeQuery(sb.toString(), Usuario.class);
+		List<Usuario> usu = query.getResultList();
+		
+		Usuario usuario = usu.get(0);
+		return usuario;
+	}
+
+	@Override
+	public void uodate(Usuario usu) throws DataAccessException {
+		StringBuffer sb = new StringBuffer();
+		sb.append("UPDATE public.materia set nombre='"+usu.getNombre()+"', apellido='"+usu.getApellido()+"',f_nacimiento='"+usu.getF_nacimiento()+"', direccion='"+usu.getDireccion()+"', estado='"+usu.getEstado().toString()+"', usuario='"+usu.getUsuario()+"', password='"+usu.getPassword()+"' c_usuario= '"+usu.getC_usuario().toString()+"'");
+		Query query = entityManager.createNativeQuery(sb.toString(), Usuario.class);
+		query.executeUpdate();
+		
 	}
 
 }

@@ -36,4 +36,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioDAO.validLogin(usuario, password);
 	}
 
+	@Override
+	public Usuario findById(Integer id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return usuarioDAO.findById(id);
+	}
+
+	@Override
+	public void uodate(Usuario usuario) throws DataAccessException {
+		usuarioDAO.uodate(usuario);
+		
+	}
+
 }

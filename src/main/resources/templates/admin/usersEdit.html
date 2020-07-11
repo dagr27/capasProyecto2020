@@ -48,7 +48,7 @@
         <div class="row">
             <div class="col-lg-12 text-center d-flex flex-column justify-content-center align-items-center">
                 <h1 class="mt-5">Usuarios</h1>
-                <form th:action="@{/saveUsers}" th:object="${user}" method="post" class="w-50" action="" id="registro">
+                <form th:action="@{/updateUsers}" th:object="${userUp}" method="post" class="w-50" action="" id="registro">
                     <div class="w-100 mb-1 d-flex">
                         <input type="text" th:field="*{nombre}" class="w-50 form-control" placeholder="Nombre">
                         <input type="text" th:field="*{apellido}" class="w-50 form-control" placeholder="Apellido">
@@ -56,41 +56,15 @@
                     <input id="" type="text" th:field="*{usuario}" class="form-control mb-1" placeholder="Usuario">
                     <input type="password"  th:field="*{password}" class="form-control mb-1" placeholder="Contraseña">
                     <input type="date" class="form-control mb-1" th:field="*{f_nacimiento}" placeholder="Fecha de Nacimiento">
-                    <div class="w-100 mb-1 d-flex">
-                        <select name="dpto" id="dpto" class="w-50 form-control" th:field="*{c_departamento.c_departamento}">
-                            <option th:each="dpto : ${departamentos}" 
-	  					th:value=${dpto.c_departamento} 
-	  					th:text="${dpto.departamento}"></option>
-                        </select>
-                        <select name="" id="" class="w-50 form-control" th:field="*{c_municipio.c_municipio}">
-                            <option th:each="muni : ${municipios}" 
-	  					th:value=${muni.c_municipio} 
-	  					th:text="${muni.municipio}"></option>
-                        </select>
-                    </div>
+                    <select name="status" id=status class="w-50 form-control" th:field="*{estado}">
+                            <option	th:value=${estado} 
+	  					th:text="${estado}"></option>
+	  					<option value="false">false</option>
+	  					<option value="false">true</option>
+                     </select>
                     <input type="text" class="form-control mb-1" placeholder="Direccion" th:field="*{direccion}">
                     <input type="submit" class="form-control btn btn-success mb-3" value="Agregar" name="send" id="send">
                 </form>
-                <input type="submit" value="Mostrar/Actualizar Usuarios" class="form-control btn btn-dark w-50 mb-3">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Acciones</th>
-                            <th scope="col">Id</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Municipio</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="u : ${listUser}">
-                            <td><a th:href="@{'/editUsers?c_usuario='+${u.c_usuario}}">Editar</a></td>
-                            <th  th:text="${u.c_usuario}"></th>
-                            <td  th:text="${u.nombre}"></td>
-                            <td  th:text="${u.apellido}"></td>
-                            <td  th:text="${u.usuario}"></td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
