@@ -1,0 +1,7 @@
+La base de datos debe llamarse: proyecto 
+Por si alguna razon no se puede logear :(, puede acceder a ambos modulos usando 
+admin/home	Administrador
+colab/home	Coordinador
+
+si al hacer guardar(hacia cualquie tabla) y la url se ve modificada porfavor usar los links de home por cada modulo.
+
