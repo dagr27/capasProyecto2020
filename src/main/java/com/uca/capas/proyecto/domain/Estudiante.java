@@ -50,7 +50,7 @@ public class Estudiante {
 	private String celular;
 	
 	@Column(name="telefono")
-	@NotEmpty(message="No puede estar vacio")
+	@NotEmpty(message="El campo no puede estar vacio")
 	@Size(max=50, message="No debe de tener mas de 10 caracteres")
 	private String telefono;
 	
@@ -59,7 +59,7 @@ public class Estudiante {
 	private CentroEscolar c_centro_escolar;
 	
 	@Column(name="padre")
-	@NotEmpty(message="No puede estar vacio")
+	@NotEmpty(message="El campo no puede estar vacio")
 	@Size(max=50, message="No debe de tener mas de 50 caracteres")
 	private String padre;
 	
