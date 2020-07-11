@@ -32,5 +32,20 @@ public class NotasServiceImpl implements NotasService {
 	public List<Notas> findAllByName(String name) throws DataAccessException {
 		return notasDao.findAllByName(name);
 	}
+
+
+	@Override
+	public Notas findById(Integer id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return notasDao.findById(id);
+	}
+	
+	@Override
+	@Transactional
+	public void updateNota(Notas nota) throws DataAccessException {
+		// TODO Auto-generated method stub
+		notasDao.updateNota(nota);
+	}
+
 	
 }

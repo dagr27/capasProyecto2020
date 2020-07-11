@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.proyecto.domain.CentroEscolar;
@@ -127,10 +129,74 @@ public class ColabController {
 		
 		return mav;
 	}
+		
+	@RequestMapping("colab/notas")
+	public ModelAndView colabNotas() {
+		ModelAndView mav = new ModelAndView();
+		List<Notas> notasList = null;
+		try {
+			notasList = notasService.findAll();
+			mav.addObject("notasList",notasList);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mav.addObject("nombre","");
+		mav.setViewName("colaborator/notas");
+		return mav;
+	}
 	
+	@PostMapping("/filtrar")
+	public ModelAndView colabFiltrar(@RequestParam(value="nombre") String nombre) {
+		ModelAndView mav = new ModelAndView();
+		List<Notas> notasList = null;
+		try {
+			notasList = notasService.findAllByName(nombre);
+			mav.addObject("notasList",notasList);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mav.setViewName("colaborator/notas");
+		return mav;
+	}
 	
+
+	@RequestMapping("/editNotas")
+	public ModelAndView editMateria(@RequestParam(value="c_notas") int c_nota) {
+		ModelAndView mav = new ModelAndView();
+		Notas notas = null;
+		notas = notasService.findById(c_nota);
+		mav.addObject("notaUp", notas);
+		mav.setViewName("colaborator/editNota");
+		return mav;
+	}
 	
-	
-	
-	
+	@PostMapping("/updateNotas")
+	public ModelAndView updateMateria(@Valid @ModelAttribute Notas note, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		Notas nota = new Notas();
+		List<Notas> notasList = null;
+		if(result.hasErrors()) {
+			try {
+				notasList = notasService.findAll();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.setViewName("colaborator/notas");
+		}else {
+			notasList = null;
+			try {
+				notasService.updateNota(note);
+				notasList = notasService.findAll();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.addObject("notas", nota);
+			mav.addObject("listNotas", notasList);
+			mav.setViewName("colaborator/notas");
+		}
+		return mav;
+	}
 }
